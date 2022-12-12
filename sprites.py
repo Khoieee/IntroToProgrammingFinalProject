@@ -47,7 +47,7 @@ class Ground(pygame.sprite.Sprite):
 
 		self.rect.x = round(self.pos.x)
 
-class Plane(pygame.sprite.Sprite):
+class Poro(pygame.sprite.Sprite):
 	def __init__(self,groups,scale_factor):
 		super().__init__(groups)
 
@@ -61,7 +61,7 @@ class Plane(pygame.sprite.Sprite):
 		self.pos = pygame.math.Vector2(self.rect.topleft)
 
 		# movement
-		self.gravity = 600
+		self.gravity = 700
 		self.direction = 0
 
 		# mask
