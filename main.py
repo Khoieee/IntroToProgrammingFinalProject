@@ -6,20 +6,6 @@ from sprites import BG, Ground, Plane, Obstacle
 
 class Game:
 	def __init__(self):
-
-		Sprite.__init__(self)
-		self.image = pg.surface((50,))
-		
-
-
-
-
-
-
-
-
-
-
 		# setup
 		pygame.init()
 		self.display_surface = pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT))
