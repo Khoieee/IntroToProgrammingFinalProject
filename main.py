@@ -8,7 +8,7 @@ class Game:
 
         # setup
         pygame.init()
-		#creates a display
+        # creates a display surface
         self.display_surface = pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT))
         self.clock = pygame.time.Clock()
 
@@ -17,6 +17,7 @@ class Game:
         self.collision_sprites = pygame.sprite.Group()
 
         # scale factor
+        # divides height of window by height of image to find scale value
         bg_height = pygame.image.load('background.png').get_height()
         self.scale_factor = WINDOW_HEIGHT / bg_height
 
@@ -29,6 +30,7 @@ class Game:
         while True:
 
             # delta time
+            # source - https://www.youtube.com/watch?v=rWtfClpWSb8&t=0s
             dt = time.time() - last_time
             last_time = time.time()
 
