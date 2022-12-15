@@ -1,3 +1,6 @@
+'Kaden Can'
+'https://www.youtube.com/watch?v=VUFvY349ess&t=2093s'
+
 import pygame, sys, time
 from settings import *
 from sprites import BG, Ground
