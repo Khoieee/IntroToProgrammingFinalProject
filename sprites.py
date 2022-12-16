@@ -1,9 +1,9 @@
-import pygame 
+import pygame
 from settings import *
 
 class BG(pygame.sprite.Sprite):
-    def init(self,groups,scale_factor):
-        super().init(groups)
+    def __init__(self,groups,scale_factor):
+        super().__init__(groups)
         bg_image = pygame.image.load('background.png').convert()
 
         full_height = bg_image.get_height() * scale_factor
@@ -24,8 +24,8 @@ class BG(pygame.sprite.Sprite):
         self.rect.x = round(self.pos.x)
 
 class Ground(pygame.sprite.Sprite):
-    def init(self,groups,scale_factor):
-        super().init(groups)
+    def __init__(self,groups,scale_factor):
+        super().__init__(groups)
         self.sprite_type = 'ground'
 
         # image
@@ -43,6 +43,36 @@ class Ground(pygame.sprite.Sprite):
 
         self.rect.x = round(self.pos.x)
 
-# class Plane(pygame.sprite.Sprite):
-#     def init(self,groups,scale_factor):
-#         super().init(groups)
+class Plane(pygame.sprite.Sprite):
+    def __init__(self,groups,scale_factor):
+        super().__init__(groups)
+
+        # image
+        self.import_frames(scale_factor)
+        self.frame_index = 0
+        self.image = self.frames[self.frame_index]
+
+        # rect
+        self.rect = self.image.get_rect(midleft = (WINDOW_WIDTH / 20, WINDOW_HEIGHT / 2))
+        self.pos = pygame.math.Vector2(self.rect.topleft)
+
+        # movement
+        self.gravity = 20
+        self.direction = 0
+
+    def import_frames(self, scale_factor):
+        self.frames = []
+        for i in range(3):
+            surf = pygame.image.load(f'red{i}.png').convert_alpha()
+            scaled_surface = pygame.transform.scale(surf,pygame.math.Vector2(surf.get_size())* scale_factor)
+            self.frames.append(scaled_surface)
+
+    def apply_gravity(self,dt):
+        self.direction += self.gravity * dt
+        self.pos.y += self.direction * dt
+        self.rect.y = round(self.pos.y)
+
+    def update(self,dt):
+        self.apply_gravity(dt)
+        # self.animate(dt)
+        # self.rotate(dt)
